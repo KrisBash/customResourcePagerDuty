@@ -132,25 +132,28 @@
     "apiVersion": "2018-09-01-preview",
     "properties": {
       "resourceTypes": [{
-        "name": "pdService",
+        "name": "services",
         "endPoints": [{
             "enabled": true,
-            "apiVersion": "2018-12-10",
+            "apiVersion": "2018-09-01-preview",
             "endPointUri": "https://aqueous-fortress-27735.herokuapp.com/",
             "timeOut": "PT10S"
         }]
     }]}                   
   },
   {
-    "type": "Microsoft.CustomProviders/resourceProviders/pagerDuty",
+    "type": "Microsoft.CustomProviders/resourceProviders/services",
     "apiVersion": "2018-09-01-preview",
     "location": "eastus",
-    "name": "pdService/myVMSSOnCall",
+    "name": "pagerDuty/myAppOncall",
+    "dependsOn": [
+      "Microsoft.CustomProviders/resourceProviders/pagerDuty"
+    ],
     "properties": {
       "serviceUrgency": "[parameters('serviceUrgency')]",
       "description": "[parameters('serviceDescription')]",
       "escalationPolicy": "[parameters('escalationPolicy')]"
-    }
+     }
     },
     {
       "type": "Microsoft.Network/loadBalancers",
