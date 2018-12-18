@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmSku": {
+      "value": "Standard_A1"
+    },
+    "ubuntuOSVersion": {
+      "value": "16.04-LTS"
+    },
+    "vmssName": {
+      "value": "custRes"
+    },
+    "instanceCount": {
+      "value": 1
+    },
+    "adminUsername": {
+      "value": "kabadmin"
+    },
+    "serviceName":{
+      "value": "vmss-oncall"
+    },
+    "sshKeyData": {
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKPAz2ThrqpF4pQkrj09CBZcCcCbBpc1Y3jlJw4kpmhavp4iuBvlpyYkwvs0AMnIpCY8ZljyROQg7ioYUwVh3WEmgS7MdhNNDsDeyIszKPF6N6n9Q4ULc5VDWuMd67sK/PA8ucpGQb4ogz3yQDiiSv9FVVwAy6iWXRSQovQiemNosn5tNaUWDLhdRBQbg6yREAgb1pBR4eYnYKDdZOf21BUj/SHh8KDav1XwEbFuc6b2qyYmaDmxYWOgd2KL/KNi5IkF66SyzxMNp7szM4JY4WxAb3tYd4bWlNmdwow/gH16tdlfdlu3KKZWmmaUDZH9hhDRz9vRiqa0PMBNupggaH krbash@krbash15"
+    },
+    "serviceDescription":{
+      "value": "My pager duty service"
+    },
+    "serviceUrgency":{
+      "value": "high"
+    },
+    "escalationPolicy":{
+      "value": "Default"
+    }
+
+  }
+}
