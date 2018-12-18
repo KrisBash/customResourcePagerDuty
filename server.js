@@ -170,8 +170,6 @@ async function resolveServiceId(serviceName) {
       });
   }
       
-
-
 app.delete("/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.CustomProviders/resourceProviders/pagerDuty/services/:id", function(req,res){
   console.log("deleting service...")
   var subName = req.path.split('/')[2]
@@ -227,9 +225,9 @@ app.put("/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/provid
     var rgName = req.path.split('/')[4]
     var serviceName = req.path.split('/')[10]
     var serviceName = subName + "_" + rgName +"_" + serviceName;
-    var escalationPolicy = req.body.escalationPolicy;
-    var description = req.body.description;
-    var serviceUrgency = req.body.serviceUrgency;
+    var escalationPolicy = req.body.properties.escalationPolicy;
+    var description = req.body.properties.description;
+    var serviceUrgency = req.body.properties.serviceUrgency;
     if (escalationPolicy == null){ escalationPolicy = "Default"}
     if (serviceUrgency == null ){ serviceUrgency = "high"}
 
@@ -345,7 +343,13 @@ app.put("/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/provid
         console.log(service)     
         const update = await updateService(service).then(function (update) {
           console.log(update)
-          res.status(200).json(update);
+          update = {
+            id: req.path,
+            type: "Microsoft.CustomProviders/resourceProviders/pagerDuty",
+            name: serviceName,
+            properties: update
+          }
+          res.status(201).json(update);
         })
         .catch(function (update) {
           error_result = {
